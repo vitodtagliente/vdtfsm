@@ -7,27 +7,29 @@
 
 #include "common.h"
 #include "node.h"
+#include "transition.h"
 
 namespace vdtfsm
 {
 	class Fsm
 	{
 	public:
-		
-		Node& addNode(state_t state, const std::string& name);
-		Node& addNode(state_t state, const std::string& name, const std::string& description);
+		friend class Builder;
+
+		Fsm();
+		Fsm(const std::string& name);
+
+		bool isValidState(state_t state) const;
 		template <typename T>
-		Node& addNode(T state, const std::string& name)
+		bool isValidState(T state) const 
 		{
-			return addNode(static_cast<state_t>(state), name);
+			return isValidState(static_cast<state_t>(state));
 		}
-		template <typename T>
-		Node& addNode(T state, const std::string& name, const std::string& description)
-		{
-			return addNode(static_cast<state_t>(state), name, description);
-		}
+
+		std::string name;
 
 	private:
 		std::map<state_t, Node> m_nodes;
+		std::vector<Transition> m_transitions;
 	};
 }

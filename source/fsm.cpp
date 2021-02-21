@@ -4,23 +4,18 @@
 
 namespace vdtfsm
 {
-	Node& Fsm::addNode(const state_t state, const std::string& name)
-	{
-		return addNode(state, name, "");
-	}
+	Fsm::Fsm()
+		: name()
+		, m_nodes()
+	{}
 
-	Node& Fsm::addNode(const state_t state, const std::string& name, const std::string& description)
+	Fsm::Fsm(const std::string& name)
+		: name(name)
+		, m_nodes()
+	{}
+
+	bool Fsm::isValidState(state_t state) const
 	{
-		const auto& it = m_nodes.find(state);
-		if (it == m_nodes.end())
-		{
-			const auto& pair = m_nodes.insert(std::make_pair(state, Node(state, name, description)));
-			assert(pair.second);
-			return pair.first->second;
-		}
-		else
-		{
-			return it->second;
-		}
+		return m_nodes.find(state) != m_nodes.end();
 	}
 }

@@ -1,11 +1,11 @@
 #include <iostream>
-#include <vdtfsm/fsm.h>
+#include <vdtfsm/vdtfsm.h>
 
 using namespace vdtfsm;
 
 int main()
 {
-	enum class AnimationState
+	enum class AnimationState : int
 	{
 		Idle,
 		Running,
@@ -13,5 +13,8 @@ int main()
 	};
 
 	Fsm fsm;
-	Node& node = fsm.addNode(AnimationState::Idle, "idle");
+	auto builder = Builder(fsm);
+	Node& node = builder.addNode(AnimationState::Idle, "idle");
+
+	is_state_compatible(4);
 }

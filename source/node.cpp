@@ -3,7 +3,8 @@
 namespace vdtfsm
 {
 	Node::Node(state_t state)
-		: m_state(state)
+		: name(std::to_string(state))
+		, m_state(state)
 	{
 	}
 
