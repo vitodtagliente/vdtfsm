@@ -8,6 +8,7 @@ namespace vdtfsm
 	template <typename T>
 	constexpr bool is_state_compatible(const T type_value)
 	{
-		return std::is_enum<type_value>::value || std::is_integral<type_value>::value;
+		return true;
+		// return std::is_enum<type_value>::value || std::is_integral<type_value>::value;
 	}
 }

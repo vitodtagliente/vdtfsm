@@ -26,13 +26,13 @@ namespace vdtfsm
 	{
 	}
 	
-	bool Transition::operator==(const Transition& other) const
+	bool Transition::operator==(const Transition& transition) const
 	{
-		return m_origin == other.m_origin && m_destination == other.m_destination;
+		return m_origin == transition.m_origin && m_destination == transition.m_destination;
 	}
 
-	bool Transition::operator!=(const Transition& other) const
+	bool Transition::operator!=(const Transition& transition) const
 	{
-		return m_origin != other.m_origin || m_destination != other.m_destination;
+		return m_origin != transition.m_origin || m_destination != transition.m_destination;
 	}
 }

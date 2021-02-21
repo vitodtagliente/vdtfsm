@@ -10,9 +10,7 @@ namespace vdtfsm
 {
 	class Node
 	{
-	public:
-		friend class Fsm;
-		
+	public:		
 		enum class State
 		{
 
@@ -26,6 +24,9 @@ namespace vdtfsm
 		Node(state_t state);
 		Node(state_t state, const std::string& name);
 		Node(state_t state, const std::string& name, const std::string& description);
+
+		bool operator== (const Node& node) const;
+		bool operator!= (const Node& node) const;
 
 		state_t getState() const { return m_state; }
 

@@ -20,4 +20,14 @@ namespace vdtfsm
 		, m_state(state)
 	{
 	}
+
+	bool Node::operator==(const Node& node) const
+	{
+		return m_state == node.m_state;
+	}
+
+	bool Node::operator!=(const Node& node) const
+	{
+		return m_state != node.m_state;
+	}
 }
