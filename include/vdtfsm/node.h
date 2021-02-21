@@ -1,6 +1,7 @@
 /// Copyright (c) Vito Domenico Tagliente
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -10,15 +11,14 @@ namespace vdtfsm
 {
 	class Node
 	{
-	public:		
-		enum class State
-		{
-
-		};
+	public:	
+		friend class Fsm;
 
 		class Behaviour
 		{
-
+		public:
+			virtual void onEnter() {}
+			virtual void onExit() {}
 		};
 
 		Node(state_t state);
@@ -30,11 +30,20 @@ namespace vdtfsm
 
 		state_t getState() const { return m_state; }
 
+		// template <typename T, typename TEnabled = std::enable_if<std::is_base_of<Behaviour, T>::value>>
+		// T* const addBehaviour()
+		// {
+		// 	m_behaviours.push_back(std::make_unique<T>());
+		// }
+
 		std::string name;
 		std::string description;
 
 	private:
+		void enter();
+		void exit();
+
 		state_t m_state;
-		std::vector<Behaviour> m_behaviours;
+		// std::vector<std::unique_ptr<Behaviour>> m_behaviours;
 	};
 }

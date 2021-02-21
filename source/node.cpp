@@ -30,4 +30,20 @@ namespace vdtfsm
 	{
 		return m_state != node.m_state;
 	}
+	
+	void Node::enter()
+	{
+		// for (std::unique_ptr<Behaviour>& behaviour : m_behaviours)
+		// {
+		// 	behaviour->onEnter();
+		// }
+	}
+	
+	void Node::exit()
+	{
+		// for (std::unique_ptr<Behaviour>& behaviour : m_behaviours)
+		// {
+		// 	behaviour->onExit();
+		// }
+	}
 }

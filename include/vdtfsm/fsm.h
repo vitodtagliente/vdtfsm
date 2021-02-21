@@ -19,17 +19,28 @@ namespace vdtfsm
 		Fsm();
 		Fsm(const std::string& name);
 
-		bool isValidState(state_t state) const;
-		template <typename T>
-		bool isValidState(T state) const 
+		bool exists(state_t state) const;
+		template <typename T, typename TEnabled = std::enable_if<std::is_enum<T>::value>>
+		bool exists(T state) const 
 		{
-			return isValidState(static_cast<state_t>(state));
+			return exists(static_cast<state_t>(state));
+		}
+
+		void start(state_t state);
+		template <typename T, typename TEnabled = std::enable_if<std::is_enum<T>::value>>
+		void start(const T state)
+		{
+			start(static_cast<state_t>(state));
 		}
 
 		std::string name;
 
 	private:
+
+		void changeState(state_t state);
+
 		std::map<state_t, Node> m_nodes;
 		std::vector<Transition> m_transitions;
+		state_t m_state;
 	};
 }
